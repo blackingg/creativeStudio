@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  font-family: "Raleway", sans-serif;
+}
+
+canvas {
+  display: block;
+}
+
+.z-max {
+  z-index: 1000;
+}
