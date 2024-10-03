@@ -298,10 +298,10 @@ const WhatWeDoPage = () => {
   ];
 
   return (
-    <div className="page h-screen w-full bg-black text-[#fff] p-8  overflow-y-auto">
+    <div className="page min-h-screen w-full bg-black text-[#fff] p-8 py-14">
       <div className="mx-[10%]">
         <h2 className="text-4xl font-bold mb-8">What We Do</h2>
-        <div className="flex flex-wrap gap-8">
+        <div className="flex flex-wrap gap-8 overflow-y-auto max-h-[75vh] md:max-h-none">
           {sections.map((section, index) => (
             <div
               key={index}
