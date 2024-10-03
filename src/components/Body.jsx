@@ -191,7 +191,7 @@ const GalleryPage = () => {
   return (
     <div className="page h-screen relative w-full bg-black text-[#fff] p-8 overflow-y-auto">
       <div className="mx-[10%]">
-        <h2 className="text-4xl font-bold mb-8">Our Gallery</h2>
+        <h2 className="text-4xl font-bold mb-8">Gallery</h2>
         <div className="flex flex-col gap-4 ">
           <div className="flex scrollbar-none overflow-x-auto pb-4 gap-4">
             {firstRowItems.map((item, index) => renderGalleryItem(item, 0))}
