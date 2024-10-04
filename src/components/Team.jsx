@@ -88,7 +88,7 @@ const Team = () => {
           <img
             src={hoveredMember.image}
             alt={hoveredMember.name}
-            className="w-[60vw] h-[40vh] lg:w-[20vw] lg:h-[40vh] rounded-sm object-cover border-2 border-[#8e8d4c]"
+            className="w-[60vw] h-[40vh] lg:w-[20vw] lg:h-[40vh] rounded-sm object-cover border-2 border-[#8e8d4c] transition-all duration-300 overflow-hidden"
           />
         </div>
       )}
