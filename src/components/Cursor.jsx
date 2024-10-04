@@ -65,7 +65,7 @@ export const Cursor = () => {
 
   return (
     <div
-      className={`fixed pointer-events-none z-50 transition-transform -translate-x-1/2 -translate-y-1/2 ${
+      className={`hidden lg:block fixed pointer-events-none z-50 transition-transform -translate-x-1/2 -translate-y-1/2 ${
         hoverButton
           ? "w-7 h-7 border-[3px] border-[#8d114b] bg-transparent"
           : "w-[15px] h-[15px] bg-[#8d114b]"
