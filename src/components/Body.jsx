@@ -20,7 +20,8 @@ const Body = () => {
         end: "bottom top",
         pin: true,
         pinSpacing: false,
-        scrub: 0.5,
+        scrub: 1,
+        anticipatePin: 1,
         markers: false,
       });
     });

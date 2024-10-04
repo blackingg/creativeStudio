@@ -50,8 +50,8 @@ const Team = () => {
   }, []);
 
   return (
-    <div className="page min-h-screen w-full bg-black text-[#fff] p-8 py-14">
-      <div className="mx-[10%]">
+    <div className="page h-screen overflow-hidden w-full bg-black text-[#fff] p-8 py-14">
+      <div className="lg:mx-[10%]">
         <h2 className="text-4xl font-bold mb-8">Team</h2>
         <div className="flex flex-col space-y-10">
           {TeamMembers.map((member, index) => (
@@ -60,7 +60,7 @@ const Team = () => {
               className="relative"
             >
               <div
-                className={`alt-cursor w-full py-2 border-b-[1px] border-b-white hover:border-b-gray-400 grid grid-cols-3 text-white hover:pl-5 transition-all duration-300 items-center`}
+                className={`alt-cursor w-full py-2 border-b-[1px] border-b-white hover:border-b-[#8e8d4c] grid grid-cols-3 text-white hover:pl-5 transition-all duration-300 items-center`}
                 onMouseEnter={() => setHoveredMember(member)}
                 onMouseLeave={() => setHoveredMember(null)}
               >
@@ -88,7 +88,7 @@ const Team = () => {
           <img
             src={hoveredMember.image}
             alt={hoveredMember.name}
-            className="w-[20vw] h-[40vh] rounded-sm object-cover border-2 border-black"
+            className="w-[60vw] h-[40vh] lg:w-[20vw] lg:h-[40vh] rounded-sm object-cover border-2 border-[#8e8d4c]"
           />
         </div>
       )}

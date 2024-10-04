@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from "react";
+import { gsap } from "gsap";
+import { FaTimes } from "react-icons/fa";
 
 const galleryData = [
   {
     id: 1,
-    title: "CHARGE - Blender Open Movie",
-    description:
-      "A timelapse video capturing the pulsating energy of a bustling cityscape from day to night.",
-    type: "video",
-    url: "https://www.youtube.com/watch?v=UXqq0ZvbOnk",
-  },
-  {
-    id: 2,
     title: "Pop",
     description:
       "A vibrant autumn forest, showcasing a spectrum of warm colors as leaves change their hues.",
     type: "image",
     url: "/img/gallery/Pop.png",
+  },
+  {
+    id: 2,
+    title: "CHARGE - Blender Open Movie",
+    description:
+      "A timelapse video capturing the pulsating energy of a bustling cityscape from day to night.",
+    type: "video",
+    url: "https://www.youtube.com/watch?v=UXqq0ZvbOnk",
   },
   {
     id: 3,
@@ -96,11 +98,11 @@ const Gallery = () => {
   const getRowBasis = (index, rowIndex) => {
     if (rowIndex === 0) {
       return index % 2 === 0
-        ? "basis-full md:basis-[42%] lg:w-[30%]"
-        : "basis-full md:basis-[50%] lg:w-[60%]";
+        ? "basis-[60%] md:basis-[42%] lg:w-[30%]"
+        : "basis-[80%] md:basis-[50%] lg:w-[60%]";
     } else {
       return index % 2 === 0
-        ? "basis-full md:basis-[42%] lg:w-[25%]"
+        ? "basis-[80%] md:basis-[42%] lg:w-[25%]"
         : "basis-full md:basis-[50%] lg:w-[70%]";
     }
   };
@@ -127,30 +129,34 @@ const Gallery = () => {
     return (
       <div
         key={item.id}
-        className={`relative group bg-gray-200 rounded-lg overflow-hidden flex-shrink-0 ${basisClass} transition-transform duration-500 ease-in-out`}
-        onClick={() => openModal(item)}
-        style={{
-          height: "25vh",
-          backgroundImage: `url(${thumbnailUrl})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
+        className={`${basisClass} flex flex-col`}
       >
-        <div className="alt-cursor absolute inset-0 flex flex-col justify-center backdrop-blur-md transition-opacity duration-300 text-white px-6 space-y-2 opacity-0 group-hover:opacity-100">
-          <h3 className="text-2xl font-bold">{item.title}</h3>
-          <p className="text-xl">
-            {item.type === "video" ? "Click to play" : "Click to view"}
-          </p>
+        <div
+          className="relative group bg-gray-200 rounded-lg overflow-hidden w-[60vw] lg:w-full cursor-pointer"
+          onClick={() => openModal(item)}
+          style={{
+            height: "25vh",
+            backgroundImage: `url(${thumbnailUrl})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="absolute inset-0 flex flex-col justify-center items-center backdrop-blur-md transition-opacity duration-300 text-white opacity-0 group-hover:opacity-100">
+            <p className="text-xl">
+              {item.type === "video" ? "Click to play" : "Click to view"}
+            </p>
+          </div>
         </div>
+        <h3 className="lg:text-xl font-bold mt-2">{item.title}</h3>
       </div>
     );
   };
 
   return (
-    <div className="page h-screen relative w-full bg-black text-[#fff] p-8 overflow-y-auto">
-      <div className="mx-[10%]">
+    <div className="page h-screen relative w-full bg-black text-[#fff] p-8">
+      <div className="lg:mx-[10%]">
         <h2 className="text-4xl font-bold mb-8">Gallery</h2>
-        <div className="flex flex-col gap-4 ">
+        <div className="flex flex-col gap-4">
           <div className="flex scrollbar-none overflow-x-auto pb-4 gap-4">
             {firstRowItems.map((item, index) => renderGalleryItem(item, 0))}
           </div>
@@ -202,7 +208,7 @@ const GalleryModal = ({ item, closeModal, getYouTubeVideoId }) => {
             <iframe
               src={getYouTubeEmbedUrl(item.url)}
               title={item.title}
-              className="w-full h-full rounded-xl"
+              className="w-full h-full rounded-lg object-cover"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             ></iframe>
