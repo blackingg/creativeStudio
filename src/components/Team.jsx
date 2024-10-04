@@ -50,7 +50,7 @@ const Team = () => {
   }, []);
 
   return (
-    <div className="page h-screen overflow-hidden w-full bg-black text-[#fff] px-8 py-14">
+    <div className="page h-screen overflow-hidden w-full bg-black text-[#fff] px-4 lg:px-8 py-7 lg:py-14">
       <div className="lg:mx-[10%]">
         <h2 className="text-4xl font-bold mb-8">Team</h2>
         <div className="flex flex-col space-y-10">

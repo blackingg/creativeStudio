@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 const WhatWeDo = () => {
   const [hoveredSection, setHoveredSection] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const sections = [
     {
@@ -46,8 +47,18 @@ const WhatWeDo = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
-    <div className="page min-h-screen w-full bg-black text-[#fff] px-8 py-14">
+    <div className="page min-h-screen w-full bg-black text-[#fff] px-4 lg:px-8 py-7 lg:py-14">
       <div className="lg:mx-[10%]">
         <h2 className="text-4xl font-bold mb-8">What We Do</h2>
         {showPopup && (
@@ -67,13 +78,21 @@ const WhatWeDo = () => {
                 flexBasis:
                   index === 0 || index === 3
                     ? hoveredSection === index
-                      ? "37%"
+                      ? isMobile
+                        ? "44%"
+                        : "37%"
+                      : isMobile
+                      ? "42%"
                       : "35%"
                     : index === sections.length - 1
                     ? hoveredSection === index
                       ? "100%"
                       : "97%"
                     : hoveredSection === index
+                    ? isMobile
+                      ? "44%"
+                      : "42%"
+                    : isMobile
                     ? "42%"
                     : "40%",
               }}
@@ -91,7 +110,7 @@ const WhatWeDo = () => {
                 }}
               >
                 <div
-                  className={`absolute inset-0 flex flex-col justify-center backdrop-blur-md transition-opacity duration-300 text-white px-1 md:px-3 lg:px-4 space-y-1 md:space-y-2 ${
+                  className={`absolute inset-0 flex flex-col justify-center backdrop-blur-md transition-opacity duration-300 text-white px-1 md:px-3 lg:px-4 py-1 space-y-1 md:space-y-2 overflow-scroll capitalize ${
                     hoveredSection === index ? "opacity-100" : "opacity-0"
                   }`}
                 >
