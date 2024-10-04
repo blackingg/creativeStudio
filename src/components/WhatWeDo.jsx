@@ -58,9 +58,9 @@ const WhatWeDo = () => {
   }, []);
 
   return (
-    <div className="page min-h-screen w-full bg-black text-[#fff] px-4 lg:px-8 py-7 lg:py-14">
+    <div className="page min-h-screen w-full bg-black text-[#fff] px-4 lg:px-8 lg:py-14">
       <div className="lg:mx-[10%]">
-        <h2 className="text-4xl font-bold mb-8">What We Do</h2>
+        <h2 className="text-4xl font-bold mb-8 pt-7">What We Do</h2>
         {showPopup && (
           <div className="animate-bounce p-1 rounded-full fixed top-[7%] right-2 lg:right-auto lg:left-2 bg-white text-[#8e8d4c] z-10 ">
             <h1 className="p-1 lg:p-2 border border-[#8e8d4c] rounded-full text-xs lg:text-sm font-bold">
