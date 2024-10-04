@@ -110,7 +110,7 @@ const WhatWeDo = () => {
                 }}
               >
                 <div
-                  className={`absolute inset-0 flex flex-col justify-center backdrop-blur-md transition-opacity duration-300 text-white px-1 md:px-3 lg:px-4 py-1 space-y-1 md:space-y-2 overflow-scroll capitalize ${
+                  className={`absolute inset-0 flex flex-col justify-center backdrop-blur-md transition-opacity duration-300 text-white px-1 md:px-3 lg:px-4 py-1 space-y-1 md:space-y-2 overflow-scroll scrollbar-thin lg:overflow-hidden capitalize ${
                     hoveredSection === index ? "opacity-100" : "opacity-0"
                   }`}
                 >
