@@ -47,7 +47,7 @@ const WhatWeDo = () => {
   }, []);
 
   return (
-    <div className="page min-h-screen w-full bg-black text-[#fff] p-8 py-14">
+    <div className="page min-h-screen w-full bg-black text-[#fff] px-8 py-14">
       <div className="lg:mx-[10%]">
         <h2 className="text-4xl font-bold mb-8">What We Do</h2>
         {showPopup && (
