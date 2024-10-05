@@ -6,7 +6,8 @@ const BRUSH_SIZE = 90;
 
 function Hero({ isLoading, backgroundImages }) {
   const canvasRef = useRef(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [pointerPosition, setPointerPosition] = useState({ x: 0, y: 0 });
+  const [isPointerDown, setIsPointerDown] = useState(false);
 
   useEffect(() => {
     if (isLoading) return;
@@ -63,7 +64,7 @@ function Hero({ isLoading, backgroundImages }) {
     const paint = () => {
       ctx.globalCompositeOperation = "destination-out";
       ctx.beginPath();
-      ctx.arc(mousePosition.x, mousePosition.y, BRUSH_SIZE, 0, Math.PI * 2);
+      ctx.arc(pointerPosition.x, pointerPosition.y, BRUSH_SIZE, 0, Math.PI * 2);
       ctx.fill();
 
       ctx.globalCompositeOperation = "destination-atop";
@@ -92,22 +93,33 @@ function Hero({ isLoading, backgroundImages }) {
       ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
     };
 
-    if (mousePosition.x !== 0 && mousePosition.y !== 0) {
+    if (isPointerDown && pointerPosition.x !== 0 && pointerPosition.y !== 0) {
       paint();
     }
-  }, [mousePosition, isLoading, backgroundImages]);
+  }, [pointerPosition, isPointerDown, isLoading, backgroundImages]);
 
-  const handleMouseMove = (event) => {
+  const handlePointerMove = (event) => {
+    if (!isPointerDown) return;
+
     const canvas = canvasRef.current;
     const rect = canvas.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-    setMousePosition({ x, y });
+    const x = (event.clientX || event.touches[0].clientX) - rect.left;
+    const y = (event.clientY || event.touches[0].clientY) - rect.top;
+    setPointerPosition({ x, y });
+  };
+
+  const handlePointerDown = (event) => {
+    setIsPointerDown(true);
+    handlePointerMove(event);
+  };
+
+  const handlePointerUp = () => {
+    setIsPointerDown(false);
   };
 
   useEffect(() => {
     console.log("isLoading:", isLoading);
-  });
+  }, [isLoading]);
 
   return (
     <div className="relative w-full h-screen pl-10 overflow-hidden flex">
@@ -142,11 +154,18 @@ function Hero({ isLoading, backgroundImages }) {
           )}
         </div>
         <div className="relative flex-1 w-full h-full flex justify-end items-center">
-          <div className="hidden lg:block relative w-4/5 h-[90%] mr-5">
+          <div className="hidden md:block relative w-4/5 h-[90%] mr-5">
             <canvas
               ref={canvasRef}
               className="absolute top-0 left-0 w-full h-full rounded-lg"
-              onMouseMove={handleMouseMove}
+              onMouseMove={handlePointerMove}
+              onMouseDown={handlePointerDown}
+              onMouseUp={handlePointerUp}
+              onMouseLeave={handlePointerUp}
+              onTouchMove={handlePointerMove}
+              onTouchStart={handlePointerDown}
+              onTouchEnd={handlePointerUp}
+              style={{ touchAction: "none" }}
             />
           </div>
         </div>
