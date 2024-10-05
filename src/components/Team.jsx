@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 const Team = () => {
   const [hoveredMember, setHoveredMember] = useState(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [showImage, setShowImage] = useState(false);
 
   const TeamMembers = [
     {
@@ -37,17 +38,32 @@ const Team = () => {
     },
   ];
 
-  useEffect(() => {
-    const handleMouseMove = (event) => {
-      setMousePosition({ x: event.clientX, y: event.clientY });
-    };
+  const handleMouseMove = (event) => {
+    setMousePosition({ x: event.clientX, y: event.clientY });
+    setShowImage(true);
+  };
 
+  useEffect(() => {
     window.addEventListener("mousemove", handleMouseMove);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, []);
+  }, [handleMouseMove]);
+
+  useEffect(() => {
+    let timer;
+    if (hoveredMember) {
+      setShowImage(true);
+      timer = setTimeout(() => {
+        setShowImage(false);
+      }, 3000);
+    }
+
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
+  }, [hoveredMember, mousePosition]);
 
   return (
     <div className="h-screen overflow-hidden w-full bg-black text-[#fff] px-4 lg:px-8 lg:py-14">
@@ -77,7 +93,7 @@ const Team = () => {
           ))}
         </div>
       </div>
-      {hoveredMember && (
+      {hoveredMember && showImage && (
         <div
           className="fixed pointer-events-none z-50"
           style={{

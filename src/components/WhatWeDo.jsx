@@ -69,7 +69,7 @@ const WhatWeDo = () => {
           </div>
         )}
 
-        <div className="flex flex-wrap gap-4 md:gap-8 h-[80vh] overflow-y-auto">
+        <div className="flex flex-wrap gap-4 md:gap-8 h-[80vh] lg:h-full overflow-y-auto">
           {sections.map((section, index) => (
             <div
               key={index}

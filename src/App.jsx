@@ -45,20 +45,20 @@ function App() {
       ) : (
         <>
           <Cursor />
-          <div className="w-screen h-screen scroll-smooth snap-y overflow-y-scroll scrollbar-thin">
+          <div className="w-screen h-screen scroll-smooth overflow-y-scroll scrollbar-thin">
             <div className="snap-start h-screen sticky top-0">
               <Hero
                 isLoading={isLoading}
                 backgroundImages={backgroundImages}
               />
             </div>
-            <div className="snap-start h-full min-h-screen sticky top-0">
+            <div className="h-screen sticky top-0">
               <WhatWeDo />
             </div>
-            <div className="snap-start h-screen sticky top-0">
+            <div className="h-screen sticky top-0">
               <Gallery />
             </div>
-            <div className="snap-start h-screen sticky top-0">
+            <div className="h-screen sticky top-0">
               <Team />
             </div>
           </div>
