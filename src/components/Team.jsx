@@ -66,7 +66,7 @@ const Team = () => {
   }, [hoveredMember, mousePosition]);
 
   return (
-    <div className="h-screen overflow-hidden w-full bg-black text-[#fff] px-4 lg:px-8 lg:py-14">
+    <div className="h-screen overflow-hidden w-full bg-black text-[#fff] px-4 md:px-6 lg:px-8 lg:py-14">
       <div className="lg:mx-[10%]">
         <h2 className="text-4xl font-bold mb-8 pt-7 lg:pt-1">Team</h2>
         <div className="flex flex-col space-y-10">

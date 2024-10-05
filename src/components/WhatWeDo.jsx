@@ -58,7 +58,7 @@ const WhatWeDo = () => {
   }, []);
 
   return (
-    <div className="relative h-full min-h-screen w-full bg-black text-[#fff] px-4 lg:px-8 lg:py-14">
+    <div className="relative h-full min-h-screen w-full bg-black text-[#fff] px-4 md:px-6 lg:px-8 lg:py-14">
       <div className="lg:mx-[10%]">
         <h2 className="text-4xl font-bold mb-8 pt-7 lg:pt-1">What We Do</h2>
         {showPopup && (
@@ -110,7 +110,7 @@ const WhatWeDo = () => {
                 }}
               >
                 <div
-                  className={`absolute inset-0 flex flex-col justify-center backdrop-blur-md transition-opacity duration-300 text-white px-1 md:px-3 lg:px-4 py-1 space-y-1 md:space-y-2 overflow-scroll scrollbar-thin lg:overflow-hidden capitalize ${
+                  className={`absolute inset-0 flex flex-col justify-center backdrop-blur-md transition-opacity duration-300 text-white px-5 md:px-3 lg:px-4 py-1 space-y-1 md:space-y-2 overflow-scroll scrollbar-thin lg:overflow-hidden capitalize ${
                     hoveredSection === index ? "opacity-100" : "opacity-0"
                   }`}
                 >
