@@ -153,7 +153,7 @@ const Gallery = () => {
   };
 
   return (
-    <div className="page h-screen relative w-full bg-black text-[#fff] px-4 lg:px-8 lg:py-14">
+    <div className="h-screen relative w-full bg-black text-[#fff] px-4 lg:px-8 lg:py-14">
       <div className="lg:mx-[10%]">
         <h2 className="text-4xl font-bold mb-8 pt-7 lg:pt-1">Gallery</h2>
         <div className="flex flex-col gap-4">

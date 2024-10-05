@@ -1,15 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { TypeWritter } from "typewritter";
 
 const BRUSH_SIZE = 90;
 
 function Hero({ isLoading, backgroundImages }) {
   const canvasRef = useRef(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const fullText = "Welcome to 12 studios!";
-  const greeting = "Hi,";
-  const [typedGreeting, setTypedGreeting] = useState("");
-  const [typedText, setTypedText] = useState("");
 
   useEffect(() => {
     if (isLoading) return;
@@ -109,67 +106,40 @@ function Hero({ isLoading, backgroundImages }) {
   };
 
   useEffect(() => {
-    if (isLoading) return;
-
-    let greetingTimeout;
-    let textTimeout;
-
-    const typeGreeting = () => {
-      let i = 0;
-      greetingTimeout = setInterval(() => {
-        if (i < greeting.length) {
-          setTypedGreeting((prev) => prev + greeting[i]);
-          i++;
-        } else {
-          clearInterval(greetingTimeout);
-          typeText();
-        }
-      }, 100);
-    };
-
-    const typeText = () => {
-      let i = 0;
-      textTimeout = setInterval(() => {
-        if (i < fullText.length) {
-          setTypedText((prev) => prev + fullText[i]);
-          i++;
-        } else {
-          clearInterval(textTimeout);
-        }
-      }, 100);
-    };
-
-    typeGreeting();
-
-    return () => {
-      clearInterval(greetingTimeout);
-      clearInterval(textTimeout);
-    };
-  }, [isLoading]);
-
-  useEffect(() => {
     console.log("isLoading:", isLoading);
   });
 
   return (
-    <div className="relative w-screen h-screen m-0 pl-10 overflow-hidden flex">
+    <div className="relative w-full h-screen pl-10 overflow-hidden flex">
       <>
         <div className="flex-1 flex justify-center items-center">
-          <motion.div
-            initial={{ x: -100, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{
-              type: "spring",
-              damping: 5,
-              stiffness: 40,
-              restDelta: 0.001,
-              duration: 0.3,
-            }}
-            className="text-[#8e8d4c]"
-          >
-            <h1 className="text-3xl md:text-7xl">{typedGreeting}</h1>
-            <h1 className="text-7xl md:text-8xl">{typedText}</h1>
-          </motion.div>
+          {!isLoading && (
+            <motion.div
+              initial={{ x: -100, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{
+                type: "spring",
+                damping: 5,
+                stiffness: 40,
+                restDelta: 0.001,
+                duration: 0.3,
+              }}
+              className="text-[#8e8d4c]"
+            >
+              <TypeWritter
+                text="Hi,"
+                speed={0.1}
+                fontSize={"4.5rem"}
+                loop={false}
+              />
+              <TypeWritter
+                text="Welcome to 12 studios!"
+                speed={100}
+                fontSize={"4.5rem"}
+                loop={false}
+              />
+            </motion.div>
+          )}
         </div>
         <div className="relative flex-1 w-full h-full flex justify-end items-center">
           <div className="hidden lg:block relative w-4/5 h-[90%] mr-5">

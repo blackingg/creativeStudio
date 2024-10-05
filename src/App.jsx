@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Cursor } from "./components/Cursor";
 import Hero from "./components/Hero";
-import Body from "./components/Body";
+import Gallery from "./components/Gallery";
+import WhatWeDo from "./components/WhatWeDo";
+import Team from "./components/Team";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -43,11 +45,23 @@ function App() {
       ) : (
         <>
           <Cursor />
-          <Hero
-            isLoading={isLoading}
-            backgroundImages={backgroundImages}
-          />
-          <Body />
+          <div className="w-screen h-screen scroll-smooth snap-y overflow-y-scroll scrollbar-thin">
+            <div className="snap-start h-screen sticky top-0">
+              <Hero
+                isLoading={isLoading}
+                backgroundImages={backgroundImages}
+              />
+            </div>
+            <div className="snap-start h-full min-h-screen sticky top-0">
+              <WhatWeDo />
+            </div>
+            <div className="snap-start h-screen sticky top-0">
+              <Gallery />
+            </div>
+            <div className="snap-start h-screen sticky top-0">
+              <Team />
+            </div>
+          </div>
         </>
       )}
     </div>
